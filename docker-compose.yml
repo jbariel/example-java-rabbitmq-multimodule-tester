@@ -1,0 +1,48 @@
+version: "3.7"
+
+x-keep-alive: &keep-alive
+  stdin_open: true
+  tty: true
+x-net: &rmq-net
+  networks:
+    - rmq
+x-pc-env: &rmq-generic-env
+  RMQ_HOSTNAME: "rabbitmq"
+  RMQ_VHOST: "/"
+  RMQ_USERNAME: "${RABBIT_USER}"
+  RMQ_PASSWORD: "${RABBIT_PASS}"
+  RMQ_INITIAL_DELAY: 10000
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 8888:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: "${RABBIT_USER}"
+      RABBITMQ_DEFAULT_PASS: "${RABBIT_PASS}"
+    <<: *rmq-net
+    volumes:
+      - "rmq:/var/lib/rabbitmq"
+  producer:
+    build: './producer'
+    depends_on: ["rabbitmq"]
+    <<: *keep-alive
+    <<: *rmq-net
+    environment:
+      <<: *rmq-generic-env
+  consumer:
+    build: './consumer'
+    depends_on: ["rabbitmq","producer"]
+    <<: *keep-alive
+    <<: *rmq-net
+    environment:
+      <<: *rmq-generic-env
+
+networks:
+  rmq:
+    driver: bridge
+
+volumes:
+  rmq:
