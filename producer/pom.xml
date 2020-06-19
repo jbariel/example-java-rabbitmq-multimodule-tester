@@ -4,13 +4,13 @@
 
     <parent>
         <groupId>com.jbariel.example.rabbitmq.manager</groupId>
-        <artifactId>example-java-rabbitmq-queueing-manager</artifactId>
+        <artifactId>example-java-rabbitmq-multimodule-tester</artifactId>
         <version>1.0.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jbariel.example.rabbitmq.manager.producer</groupId>
-    <artifactId>example-java-rabbitmq-queueing-manager-producer</artifactId>
+    <artifactId>example-java-rabbitmq-multimodule-tester-producer</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 

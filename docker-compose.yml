@@ -7,11 +7,10 @@ x-net: &rmq-net
   networks:
     - rmq
 x-pc-env: &rmq-generic-env
-  RMQ_HOSTNAME: "rabbitmq"
-  RMQ_VHOST: "/"
-  RMQ_USERNAME: "${RABBIT_USER}"
-  RMQ_PASSWORD: "${RABBIT_PASS}"
-  RMQ_INITIAL_DELAY: 10000
+  RMQ_URI: "amqp://${RABBIT_USER}:${RABBIT_PASS}@rabbitmq:5672/%2f"
+  RMQ_EXCHANGE_NAME: "myExchange"
+  RMQ_QUEUE_NAME: "myQueue"
+  RMQ_INIT_DELAY: 10
 
 services:
   rabbitmq:

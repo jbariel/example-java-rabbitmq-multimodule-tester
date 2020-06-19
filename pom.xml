@@ -3,7 +3,7 @@
                       https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jbariel.example.rabbitmq.manager</groupId>
-    <artifactId>example-java-rabbitmq-queueing-manager</artifactId>
+    <artifactId>example-java-rabbitmq-multimodule-tester</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
